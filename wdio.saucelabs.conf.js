@@ -1,4 +1,4 @@
-import { config as defaults} from './wdio.conf';
+const defaults = require('./wdio.conf').config;
 
 export const config = Object.assign(defaults, {
     specs: [
