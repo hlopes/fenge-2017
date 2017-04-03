@@ -1,5 +1,5 @@
-import Page from './page';
-import TodosManager from '../utils/todos.manager';
+const Page = require('./page');
+const TodosManager = require('../utils/todos.manager');
 
 class TodosPage extends Page {
 
@@ -61,4 +61,4 @@ class TodosPage extends Page {
     }
 }
 
-export default new TodosPage();
+module.exports = new TodosPage();

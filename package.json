@@ -20,8 +20,8 @@
   "homepage": "https://github.com/hlopes/fenge-2017#readme",
   "devDependencies": {
     "wdio-allure-reporter": "^0.1.2",
-    "wdio-jasmine-framework": "^0.2.16",
-    "wdio-selenium-standalone-service": "^0.0.7",
+    "wdio-jasmine-framework": "^0.2.19",
+    "wdio-selenium-standalone-service": "0.0.7",
     "wdio-spec-reporter": "0.0.3",
     "webdriverio": "^4.4.0"
   }

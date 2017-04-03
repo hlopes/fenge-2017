@@ -23,4 +23,4 @@ class TodosManager {
     }
 }
 
-export default new TodosManager;
+module.exports = new TodosManager;

@@ -1,13 +1,13 @@
-import { expect } from 'chai';
+const assert = require('assert');
 
-import TodosPage from '../pages/todos.page.js';
+const TodosPage = require('../pages/todos.page.js');
 
 const todos = {
-    TALK: 'Give a talk on Coimbra JUG',
-    TALK_EDITED: 'Give a talk on Coimbra JUG Nov/2016'
+    TALK: 'Talk at FENGE 2017',
+    TALK_EDITED: '>>>>>>>>>>> Talking at FENGE 2017'
 };
 
-describe('[TC CRUD]', () => {
+describe('[TS CRUD]', () => {
 
     it('should be able to add a todo', () => {
 
@@ -15,22 +15,25 @@ describe('[TC CRUD]', () => {
 
         TodosPage.addTodo(todos.TALK)
 
-        expect(TodosPage.todoList.isVisible()).to.be.true;
-        expect(TodosPage.getTodo(todos.TALK).isVisible()).to.be.true;
+        assert.ok(TodosPage.todoList.isVisible());
+        assert.ok(TodosPage.getTodo(todos.TALK).isVisible());
     });
 
     it('should be able to edit a todo', () => {
 
         TodosPage.editTodo(todos.TALK, todos.TALK_EDITED);
 
-        expect(TodosPage.todoList.isVisible()).to.be.true;
-        expect(TodosPage.getTodo(todos.TALK_EDITED).isVisible()).to.be.true;
+        assert.ok(TodosPage.todoList.isVisible());
+        assert.ok(TodosPage.getTodo(todos.TALK_EDITED).isVisible());
     });
 
     it('should be able to remove a todo', () => {
 
         TodosPage.removeTodo(todos.TALK_EDITED)
 
-        expect(TodosPage.todoList.isExisting()).to.be.false;
+        assert.ok(!TodosPage.todoList.isExisting());
     });
+
+    // delay each step for presentation purpose
+    afterEach(() => browser.pause(2000));
 });
