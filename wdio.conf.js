@@ -1,5 +1,18 @@
+const path = require('path');
+const VisualRegressionCompare = require('wdio-visual-regression-service/compare');
+
+function getScreenshotName(basePath) {
+    return function (context) {
+        var type = context.type;
+        var testName = context.test.title;
+        var browserVersion = parseInt(context.browser.version, 10);
+        var browserName = context.browser.name;
+        return path.join(basePath, `${testName}_${type}_${browserName}_v${browserVersion}.png`);
+    };
+}
+
 exports.config = {
-    
+
     //
     // ==================
     // Specify Test Files
@@ -106,7 +119,18 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone'],
+    services: ['selenium-standalone', 'visual-regression'],
+    visualRegression: {
+        compare: new VisualRegressionCompare.LocalCompare({
+            referenceName: getScreenshotName(path.join(process.cwd(), 'screenshots/reference')),
+            screenshotName: getScreenshotName(path.join(process.cwd(), 'screenshots/screen')),
+            diffName: getScreenshotName(path.join(process.cwd(), 'screenshots/diff')),
+            misMatchTolerance: 0.01,
+        }),
+        viewportChangePause: 300,
+        widths: [640],
+        orientations: ['landscape', 'portrait'],
+    },
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -119,23 +143,23 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec','allure'],
-    
+    reporters: ['spec', 'allure'],
+
     //
     // Options to be passed to Jasmine.
     jasmineNodeOpts: {
         //
         // Jasmine default timeout
-        defaultTimeoutInterval: 10000,
+        defaultTimeoutInterval: 60000,
         //
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
         // an assertion fails.
-        expectationResultHandler: function(passed, assertion) {
+        expectationResultHandler: function (passed, assertion) {
             // do something
         }
     },
-    
+
     //
     // =====
     // Hooks
@@ -157,7 +181,7 @@ exports.config = {
     // Gets executed before test execution begins. At this point you can access all global
     // variables, such as `browser`. It is the perfect place to define custom commands.
     before: function (capabilities, specs) {
-        browser.windowHandleSize({width: 768, height: 500});
+        browser.windowHandleSize({ width: 768, height: 500 });
     },
     //
     // Hook that gets executed before the suite starts
@@ -188,7 +212,7 @@ exports.config = {
     //
     // Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
     afterTest: function (test) {
-        browser.saveScreenshot();
+        browser.checkViewport();
     },
     //
     // Hook that gets executed after the suite has ended
