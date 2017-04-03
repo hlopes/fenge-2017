@@ -1,9 +1,6 @@
 const defaults = require('./wdio.conf').config;
 
 exports.config = Object.assign(defaults, {
-    specs: [
-        './build/specs/complete_todo.js'
-    ],
     baseUrl: 'http://todomvc.com/examples/react/#',
     services: ['sauce'],
     logLevel: 'silent',
