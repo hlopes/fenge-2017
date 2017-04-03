@@ -35,5 +35,5 @@ describe('[TS CRUD]', () => {
     });
 
     // delay each step for presentation purpose
-    afterEach(() => browser.pause(2000));
+    // afterEach(() => browser.pause(2000));
 });
