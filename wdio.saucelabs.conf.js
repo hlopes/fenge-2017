@@ -1,6 +1,6 @@
 const defaults = require('./wdio.conf').config;
 
-export const config = Object.assign(defaults, {
+exports.config = Object.assign(defaults, {
     specs: [
         './build/specs/complete_todo.js'
     ],
