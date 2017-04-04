@@ -10,28 +10,38 @@ const todos = {
 describe('[TS CRUD]', () => {
 
     it('should be able to add a todo', () => {
+        
+        browser.url('/');
 
-        TodosPage.open();
+        $('.new-todo').setValue(todos.TALK);
 
-        TodosPage.addTodo(todos.TALK)
+        // press enter
+        browser.keys('\uE007');
 
-        assert.ok(TodosPage.todoList.isVisible());
-        assert.ok(TodosPage.getTodo(todos.TALK).isVisible());
+        assert.ok($('.todo-list').isVisible());
+        assert.ok($('.todo-list > li').isVisible());
+        assert.equal($('.todo-list > li').getText(), todos.TALK);
     });
 
     it('should be able to edit a todo', () => {
 
-        TodosPage.editTodo(todos.TALK, todos.TALK_EDITED);
+        $('.todo-list > li').doubleClick();
+        $('.todo-list > li').element('.edit').setValue(todos.TALK_EDITED);
 
-        assert.ok(TodosPage.todoList.isVisible());
-        assert.ok(TodosPage.getTodo(todos.TALK_EDITED).isVisible());
+        // press enter
+        browser.keys('\uE007');
+
+        assert.ok($('.todo-list').isVisible());
+        assert.ok($('.todo-list > li').isVisible());
+        assert.equal($('.todo-list > li').getText(), todos.TALK_EDITED);
     });
 
     it('should be able to remove a todo', () => {
 
-        TodosPage.removeTodo(todos.TALK_EDITED)
+        $('.todo-list > li').moveToObject();
+        $('.todo-list > li').element('.destroy').click();
 
-        assert.ok(!TodosPage.todoList.isExisting());
+        assert.ok(!$('.todo-list').isExisting());
     });
 
     // delay each step for presentation purpose
