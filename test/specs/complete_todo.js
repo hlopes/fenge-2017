@@ -1,7 +1,5 @@
 const assert = require('assert');
 
-const TodosPage = require('../pages/todos.page.js');
-
 const todos = {
     TALK: 'Talk at FENGE 2017',
 };
@@ -9,28 +7,32 @@ const todos = {
 describe('[TS CHECK & CLEAR]', () => {
 
     it('should be able to add a todo', () => {
+        
+        browser.url('/');
 
-        TodosPage.open();
+        $('.new-todo').setValue(todos.TALK);
 
-        TodosPage.addTodo(todos.TALK)
+        // press enter
+        browser.keys('\uE007');
 
-        assert.ok(TodosPage.todoList.isVisible());
-        assert.ok(TodosPage.getTodo(todos.TALK).isVisible());
+        assert.ok($('.todo-list').isVisible());
+        assert.ok($('.todo-list > li').isVisible());
+        assert.equal($('.todo-list > li').getText(), todos.TALK);
     });
 
     it('should be able to complete a todo', () => {
 
-        TodosPage.completeTodo(todos.TALK);
+        $('.todo-list > li').element('.toggle').click();
 
-        assert.ok(TodosPage.todoList.isVisible());
-        assert.equal(TodosPage.getTodo(todos.TALK).getAttribute('class'), 'completed');
+        assert.ok($('.todo-list').isVisible());
+        assert.equal($('.todo-list > li').getAttribute('class'), 'completed');
     });
 
     it('should be able to clear all completed todos', () => {
 
-        TodosPage.clearCompleted();
+        $('button.clear-completed').click();
 
-        assert.ok(!TodosPage.todoList.isVisible());
+        assert.ok(!$('.todo-list').isExisting());
     });
 
     // delay each step for presentation purpose
