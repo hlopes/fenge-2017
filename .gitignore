@@ -42,6 +42,7 @@ errorShots
 # Allure
 allure-results
 allure-report
+screenshots
 
 # Idea
 .idea
