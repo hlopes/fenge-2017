@@ -42,6 +42,4 @@ describe('[TS CRUD]', () => {
         assert.ok(!$('.todo-list').isExisting());
     });
 
-    // delay each step for presentation purpose
-    // afterEach(() => browser.pause(2000));
 });
