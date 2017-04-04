@@ -1,7 +1,5 @@
 const assert = require('assert');
 
-const TodosPage = require('../pages/todos.page.js');
-
 const todos = {
     TALK: 'Talk at FENGE 2017',
     TALK_EDITED: '>>>>>>>>>>> Talking at FENGE 2017'
