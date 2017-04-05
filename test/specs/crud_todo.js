@@ -38,8 +38,6 @@ describe('[TS CRUD]', () => {
 
         $('.todo-list > li').moveToObject();
         $('.todo-list > li').element('.destroy').click();
-
-        assert.ok(!$('.todo-list').isExisting());
     });
 
     // delay each step for presentation purpose
