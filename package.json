@@ -22,6 +22,7 @@
     "allure-commandline": "^1.5.0",
     "wdio-allure-reporter": "^0.1.2",
     "wdio-jasmine-framework": "^0.2.19",
+    "wdio-phantomjs-service": "^0.2.2",
     "wdio-selenium-standalone-service": "0.0.7",
     "wdio-spec-reporter": "0.0.3",
     "wdio-visual-regression-service": "^0.7.0",
