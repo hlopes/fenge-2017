@@ -5,6 +5,7 @@ const todos = {
     TALK_EDITED: '>>>>>>>>>>> Talking at FENGE 2017'
 };
 
+/*
 describe('[TS CRUD]', () => {
 
     it('should be able to add a todo', () => {
@@ -42,4 +43,11 @@ describe('[TS CRUD]', () => {
 
     // delay each step for presentation purpose
     afterEach(() => browser.pause(2000));
+});*/
+
+describe('webdriver.io api page', function() {
+    it('should be able to filter for commands', function () {
+        browser.url('http://webdriver.io');
+        assert.equal(browser.getTitle(), 'WebdriverIO - WebDriver bindings for Node.js');
+    });
 });

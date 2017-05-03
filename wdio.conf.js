@@ -45,6 +45,7 @@ exports.config = {
         maxInstances: 1,
         //
         browserName: 'phantomjs'
+        //browserName: 'chrome'
     }],
     //
     // ===================
@@ -72,7 +73,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost:8081',
+    baseUrl: 'http://todomvc.com/examples/react',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -107,6 +108,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['phantomjs'],
+    //services: ['selenium-standalone'],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -119,7 +121,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec','allure'],
+    reporters: ['spec'],
     
     //
     // Options to be passed to Jasmine.
@@ -157,7 +159,7 @@ exports.config = {
     // Gets executed before test execution begins. At this point you can access all global
     // variables, such as `browser`. It is the perfect place to define custom commands.
     before: function (capabilities, specs) {
-        browser.windowHandleSize({width: 768, height: 500});
+        //browser.windowHandleSize({width: 768, height: 500});
     },
     //
     // Hook that gets executed before the suite starts
